@@ -4,4 +4,11 @@
     <string name="WelcomeScreenParagraphBody">Motivation can take you far,
         but it can take you even further if you first find your vision </string>
     <string name="WelcomeScreenButtonText">Get Started</string>
+    <string name="SettingsScreenHeader">Settings</string>
+    <string name="PersonalInfo">Personal Info</string>
+    <string name="YourProfile">Your Profile</string>
+    <string name="ChangePassword">Change Password</string>
+    <string name="AdjustFontSize">Adjust Font Size</string>
+    <string name="DailyChallenge">Daily Challenge</string>
+    <string name="Logout">Logout</string>
 </resources>
