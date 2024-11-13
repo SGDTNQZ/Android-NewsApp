@@ -48,8 +48,14 @@ fun SettingsScreenCompose(){
         .fillMaxSize()
     ) {
         SettingsScreenTopComponent()
-        SettingsScreenFirstComponent()
-        SettingsScreenSecondComponent()
+        SettingsScreenComponent(
+            R.drawable.profile_icon,R.string.YourProfile,
+            R.drawable.ic_lock,R.string.ChangePassword
+        )
+        SettingsScreenComponent(
+            R.drawable.ic_edit, R.string.AdjustFontSize,
+            R.drawable.ic_game, R.string.DailyChallenge
+        )
         LogoutBtn()
         Spacer(modifier = Modifier.weight(1f))
     }
@@ -77,28 +83,18 @@ fun SettingsScreenTopComponent(){
     }
 }
 @Composable
-fun SettingsScreenFirstComponent(){
+fun SettingsScreenComponent(
+    firstIconId : Int,firstStringId : Int,
+    secondIconId : Int, secondStringId : Int
+){
     Column(
         modifier = Modifier
             .padding(top = 32.dp)
             .fillMaxWidth()
     ) {
         SettingsScreenPersonalInfoHeader()
-        SettingsScreenOptions(R.drawable.profile_icon, R.string.YourProfile)
-        SettingsScreenOptions(R.drawable.ic_lock, R.string.ChangePassword)
-
-    }
-}
-@Composable
-fun SettingsScreenSecondComponent(){
-    Column(
-        modifier = Modifier
-            .padding(top = 32.dp)
-            .fillMaxWidth()
-    ) {
-        SettingsScreenPersonalInfoHeader()
-        SettingsScreenOptions(R.drawable.ic_edit, R.string.AdjustFontSize)
-        SettingsScreenOptions(R.drawable.ic_game, R.string.DailyChallenge)
+        SettingsScreenOptions(firstIconId, firstStringId)
+        SettingsScreenOptions(secondIconId, secondStringId)
 
     }
 }
