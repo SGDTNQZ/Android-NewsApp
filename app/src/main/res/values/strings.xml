@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Sagadat Seminar 5</string>
+    <string name="WelcomeScreenParagraphHeader">Open Your Knowledge Power</string>
+    <string name="WelcomeScreenParagraphBody">Motivation can take you far,
+        but it can take you even further if you first find your vision </string>
+    <string name="WelcomeScreenButtonText">Get Started</string>
+</resources>
