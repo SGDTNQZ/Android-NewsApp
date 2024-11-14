@@ -11,21 +11,30 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.projects.newsapp.ui.theme.NewsAppTheme
+const val DOMAIN_ROUTE = "https://www.nfactorial.school/"
 
 class MainActivity : ComponentActivity() {
+
+    sealed class Routes(val route: String) {
+
+        data object Splash : Routes("${DOMAIN_ROUTE}splash")
+        data object Settings : Routes("${DOMAIN_ROUTE}settings")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            NewsAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+            val navController = rememberNavController()
+            NavHost(navController = navController, startDestination = Routes.Splash.route) {
+                composable(Routes.Splash.route) { WelcomeScreen () }
+                composable(Routes.Settings.route) { SettingsScreen() }
             }
+
         }
     }
 }

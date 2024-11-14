@@ -11,4 +11,6 @@
     <string name="AdjustFontSize">Adjust Font Size</string>
     <string name="DailyChallenge">Daily Challenge</string>
     <string name="Logout">Logout</string>
+
+    <string name="TodayReading">Today\'s Reading</string>
 </resources>
