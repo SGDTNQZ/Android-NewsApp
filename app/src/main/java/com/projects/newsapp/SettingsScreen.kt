@@ -66,7 +66,7 @@ fun SettingsScreenTopComponent(){
         verticalAlignment = Alignment.CenterVertically
     ){
         Image(
-            painterResource(R.drawable.ic_icon_arrow_back),
+            painterResource(R.drawable.ic_arrow_back),
             contentDescription = "Arrow back icon",
             modifier = Modifier
                 .size(32.dp)
