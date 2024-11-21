@@ -1,4 +1,4 @@
-package com.projects.newsapp.HomePageScreen
+package com.projects.newsapp.homePageScreen
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,15 +12,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.sp
 import com.projects.newsapp.R
 import com.projects.newsapp.Views.NewsItemView
 
-class HomePageScreen() : ComponentActivity(){
+class HomePageScreen : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -42,11 +42,12 @@ class HomePageScreen() : ComponentActivity(){
 
 @Composable
 fun HomePageScreenCompose(){
-    var list by remember {
-        mutableStateOf<List<NewsItemView>>(
+    val inputText = remember { mutableStateOf("") }
+
+    val list = remember {
+        mutableStateOf(
             listOf(
                 NewsItemView("Hello World"),
-                NewsItemView("Item 2"),
             )
         )
     }
@@ -56,20 +57,27 @@ fun HomePageScreenCompose(){
             .fillMaxSize()
     ) {
         HomePageScreenHeader()
-        HomePageScreenSearchField()
+        HomePageScreenSearchField(inputText,list)
+
+
         HomePageScreenPopularList(list)
         HomePageScreenReadingList(list)
     }
 }
+
+
 @Composable
-fun HomePageScreenReadingList(list: List<NewsItemView>){
+fun HomePageScreenReadingList(list: MutableState<List<NewsItemView>>){
     Column (modifier = Modifier
         .padding(top = 24.dp)
     ){
         ReadingListHeader()
 
-        LazyColumn {
-            items(list){
+        LazyColumn (
+            Modifier.safeContentPadding()
+                .wrapContentHeight()
+        ){
+            items(list.value){
                 item -> ColumnItem(name = item.itemName)
             }
         }
@@ -77,7 +85,7 @@ fun HomePageScreenReadingList(list: List<NewsItemView>){
 
 }
 @Composable
-fun HomePageScreenPopularList(list: List<NewsItemView>){
+fun HomePageScreenPopularList(list: MutableState<List<NewsItemView>>){
     Column (
         modifier = Modifier
             .padding(top = 24.dp)
@@ -87,12 +95,14 @@ fun HomePageScreenPopularList(list: List<NewsItemView>){
 
         LazyRow (Modifier.safeContentPadding())
         {
-            items(list){
+            items(list.value){
                     item -> RowItem(name = item.itemName)
             }
         }
     }
 }
+
+
 
 @Composable
 fun HomePageScreenHeader(){
@@ -101,7 +111,7 @@ fun HomePageScreenHeader(){
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ){
-        val timeleft : Int = 25
+        val timeleft = 25
 
         Column {
             Text(

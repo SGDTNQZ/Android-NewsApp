@@ -1,4 +1,4 @@
-package com.projects.newsapp.HomePageScreen
+package com.projects.newsapp.homePageScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
