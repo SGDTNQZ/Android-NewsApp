@@ -47,7 +47,7 @@ fun ReadingListHeader(){
 }
 
 @Composable
-internal fun ColumnItem(){
+internal fun ColumnItem(name: String){
     Row (modifier = Modifier
         .fillMaxWidth()
         .padding(top = 24.dp),
@@ -78,7 +78,7 @@ internal fun ColumnItem(){
 
             )
             Text(
-                text = "How to promote business right away in instagram",
+                text = name,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
                 fontSize = 16.sp,
