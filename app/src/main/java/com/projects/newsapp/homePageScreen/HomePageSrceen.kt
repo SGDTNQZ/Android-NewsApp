@@ -29,7 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.projects.newsapp.R
-import com.projects.newsapp.Views.NewsItemView
+import com.projects.newsapp.views.NewsItemView
 
 class HomePageScreen : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {

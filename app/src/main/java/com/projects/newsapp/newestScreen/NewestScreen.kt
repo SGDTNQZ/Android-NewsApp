@@ -1,4 +1,4 @@
-package com.projects.newsapp.NewestScreen
+package com.projects.newsapp.newestScreen
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

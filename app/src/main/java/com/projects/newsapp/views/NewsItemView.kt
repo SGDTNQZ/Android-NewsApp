@@ -1,4 +1,4 @@
-package com.projects.newsapp.Views
+package com.projects.newsapp.views
 
 data class NewsItemView(
     val itemName : String,
