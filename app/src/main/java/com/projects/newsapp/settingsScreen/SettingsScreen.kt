@@ -1,4 +1,4 @@
-package com.projects.newsapp
+package com.projects.newsapp.settingsScreen
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -28,6 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.projects.newsapp.R
 
 class SettingsScreen : ComponentActivity () {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,8 +47,8 @@ fun SettingsScreenCompose(){
     ) {
         SettingsScreenTopComponent()
         SettingsScreenComponent(
-            R.drawable.profile_icon,R.string.YourProfile,
-            R.drawable.ic_lock,R.string.ChangePassword
+            R.drawable.profile_icon, R.string.YourProfile,
+            R.drawable.ic_lock, R.string.ChangePassword
         )
         SettingsScreenComponent(
             R.drawable.ic_edit, R.string.AdjustFontSize,
