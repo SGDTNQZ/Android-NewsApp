@@ -46,7 +46,7 @@ fun PopularListHeader(){
 }
 
 @Composable
-internal fun RowItem(name : String){
+internal fun RowItem(item: NewsItem){
     Column (modifier = Modifier.padding(top = 24.dp, end = 8.dp)){
         Image(
             painterResource(R.drawable.img_row_item),
@@ -66,7 +66,7 @@ internal fun RowItem(name : String){
                 .padding(top = 8.dp)
         )
         Text(
-            text = name,
+            text = item.name,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
             fontSize = 20.sp,

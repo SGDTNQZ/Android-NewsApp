@@ -1,9 +1,6 @@
 
 package com.projects.newsapp.welcome
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -26,26 +23,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.fragment.app.FragmentActivity
 import com.projects.newsapp.R
-import com.projects.newsapp.homePageScreen.HomePageScreen
 
-class WelcomeScreen : FragmentActivity(){
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            WelcomeScreenCompose(
-                onClickWelcome = {
-                    val intent = Intent(this, HomePageScreen::class.java)
-                    startActivity(intent)
-                }
-            )
-        }
-    }
-}
 
 @Composable
-fun WelcomeScreenCompose(onClickWelcome : () -> Unit){
+fun WelcomeScreen(onEvent: (WelcomeEvent) -> Unit){
     Column( modifier = Modifier
         .padding(top = 40.dp, bottom = 44.dp)
         .padding(horizontal = 24.dp),
@@ -64,7 +46,7 @@ fun WelcomeScreenCompose(onClickWelcome : () -> Unit){
         )
         WelcomeScreenParagraph()
         Spacer(modifier = Modifier.weight(1f))
-        WelcomeScreenButton(onClickWelcome)
+        WelcomeScreenButton(onEvent)
     }
 }
 
@@ -97,14 +79,16 @@ fun WelcomeScreenParagraph(){
 }
 
 @Composable
-fun WelcomeScreenButton(onClickWelcome: () -> Unit) {
+fun WelcomeScreenButton(onEvent: (WelcomeEvent) -> Unit) {
     Button(
         modifier = Modifier
             .fillMaxWidth()
             .height(72.dp),
         colors = ButtonDefaults.buttonColors(Color.Black),
         shape = RoundedCornerShape(12.dp),
-        onClick = onClickWelcome
+        onClick = {
+            onEvent(WelcomeEvent.OnClickToMain(ActionArgs("We are from Welcome Screen")))
+        }
     ) {
         Text(
             text = stringResource(id = R.string.WelcomeScreenButtonText),

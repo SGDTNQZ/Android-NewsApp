@@ -10,14 +10,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,16 +25,13 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.projects.newsapp.R
-import com.projects.newsapp.views.NewsItemView
 
 @Composable
 fun HomePageScreenSearchField(
-    inputText  : MutableState<String>,
-    list: MutableState<List<NewsItemView>>
+    onEvent: (HomeEvent) -> Unit,
+    state: HomeState
 ) {
     var isFocused by remember { mutableStateOf(false) }
 
@@ -48,9 +42,9 @@ fun HomePageScreenSearchField(
             .clip(shape = RoundedCornerShape(12.dp))
             .onFocusChanged { isFocused = it.isFocused }
         ,
-        value = inputText.value,
+        value = state.searchText,
         onValueChange = {
-            inputText.value = it
+            onEvent(HomeEvent.OnSearchTextChange(it))
                         },
         maxLines = 1,
         label = { Text("Search") },
@@ -65,13 +59,13 @@ fun HomePageScreenSearchField(
             )
         },
         trailingIcon = {
-            if (isFocused && inputText.value.isNotEmpty())
+            if (isFocused && state.searchText.isNotEmpty())
                 Icon(
                     imageVector = Icons.Default.Clear,
                     contentDescription = "Cancel icon",
                     modifier = Modifier
                         .size(24.dp)
-                        .clickable { inputText.value = "" },
+                        .clickable { onEvent(HomeEvent.OnSearchTextChange("")) },
                 )
 
         },
@@ -85,21 +79,4 @@ fun HomePageScreenSearchField(
 
     Spacer(modifier = Modifier.height(8.dp))
 
-    Button(
-        onClick = {
-            if (inputText.value.isNotEmpty())
-                list.value += NewsItemView(inputText.value)
-        },
-        modifier = Modifier
-            .clip(RoundedCornerShape(12.dp)),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Color.LightGray,
-            contentColor = Color.Black
-        )
-    ) {
-        Text( text = "Add",
-            fontSize = 12.sp,
-            fontWeight = FontWeight(500),
-        )
-    }
 }
