@@ -12,7 +12,7 @@ class HomeActivity(): ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContent{
-            HomePageScreen(
+            HomeScreen(
                 onEvent = {event -> homeViewModel.dispatch(event)},
                 state = homeViewModel.homeState.value
             )

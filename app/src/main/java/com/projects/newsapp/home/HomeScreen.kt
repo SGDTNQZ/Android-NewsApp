@@ -27,7 +27,7 @@ import com.projects.newsapp.R
 
 
 @Composable
-fun HomePageScreen(
+fun HomeScreen(
     onEvent: (HomeEvent) -> Unit,
     state: HomeState
 ){
