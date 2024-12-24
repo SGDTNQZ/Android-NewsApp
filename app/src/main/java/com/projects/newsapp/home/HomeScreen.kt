@@ -1,4 +1,4 @@
-package com.projects.newsapp.homePageScreen
+package com.projects.newsapp.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -44,9 +44,9 @@ fun HomePageScreen(
                         .background(color = Color.White)
                         .padding(top = 56.dp)
                 ) {
-                    item { HomePageScreenHeader() }
-                    item { HomePageScreenSearchField(onEvent,state) }
-                    item { HomePageScreenPopularList(state.rowData) }
+                    item { HomeScreenHeader() }
+                    item { HomeScreenSearchField(onEvent,state) }
+                    item { HomeScreenPopularList(state.rowData) }
                 }
             }
         }
@@ -56,7 +56,7 @@ fun HomePageScreen(
 }
 
 @Composable
-fun HomePageScreenPopularList(list: List<NewsItem>){
+fun HomeScreenPopularList(list: List<NewsItem>){
     Column (
         modifier = Modifier
             .padding(top = 24.dp)
@@ -74,7 +74,7 @@ fun HomePageScreenPopularList(list: List<NewsItem>){
 }
 
 @Composable
-fun HomePageScreenHeader(){
+fun HomeScreenHeader(){
     Row (
         modifier = Modifier
             .fillMaxWidth(),

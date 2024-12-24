@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.projects.newsapp.db.Entity.NewsRoomDTO
 import com.projects.newsapp.db.dao.NewsDao
-import com.projects.newsapp.homePageScreen.HomeActivity
+import com.projects.newsapp.home.HomeActivity
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 

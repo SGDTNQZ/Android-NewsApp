@@ -1,4 +1,4 @@
-package com.projects.newsapp.homePageScreen
+package com.projects.newsapp.home
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

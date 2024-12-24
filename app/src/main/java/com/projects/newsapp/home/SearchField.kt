@@ -1,4 +1,4 @@
-package com.projects.newsapp.homePageScreen
+package com.projects.newsapp.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import com.projects.newsapp.R
 
 @Composable
-fun HomePageScreenSearchField(
+fun HomeScreenSearchField(
     onEvent: (HomeEvent) -> Unit,
     state: HomeState
 ) {

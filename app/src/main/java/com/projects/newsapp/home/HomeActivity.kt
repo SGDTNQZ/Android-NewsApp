@@ -1,4 +1,4 @@
-package com.projects.newsapp.homePageScreen
+package com.projects.newsapp.home
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

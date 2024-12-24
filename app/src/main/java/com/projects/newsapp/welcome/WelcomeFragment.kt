@@ -18,10 +18,12 @@ class WelcomeFragment : Fragment(){
         viewModelInitializer = {
             WelcomeViewModel(
                 newsDao = DatabaseHolder.getOrCreate(requireContext().applicationContext)
-                    .getAccountDao()
+                    .getAccountDao(),
             )
         }
     )
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

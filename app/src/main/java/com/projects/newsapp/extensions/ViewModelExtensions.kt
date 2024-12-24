@@ -12,12 +12,12 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 @MainThread
 inline fun <reified VM : ViewModel> Fragment.viewModels(
     noinline viewModelInitializer: () -> VM
-): Lazy<VM>{
-    val owner by lazy (LazyThreadSafetyMode.NONE){this}
+): Lazy<VM> {
+    val owner by lazy(LazyThreadSafetyMode.NONE) { this }
     return createViewModelLazy(
         viewModelClass = VM::class,
-        storeProducer = {owner.viewModelStore},
-        extrasProducer = {CreationExtras.Empty},
+        storeProducer = { owner.viewModelStore },
+        extrasProducer = { CreationExtras.Empty },
         factoryProducer = {
             viewModelFactory {
                 initializer { viewModelInitializer() }

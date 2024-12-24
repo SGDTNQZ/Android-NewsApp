@@ -1,4 +1,4 @@
-package com.projects.newsapp.homePageScreen
+package com.projects.newsapp.home
 
 sealed interface HomeEvent {
     data class OnSearchTextChange(val text: String) : HomeEvent
