@@ -2,21 +2,44 @@ package com.projects.newsapp.home
 
 data class HomeState(
     val searchText: String,
-    val rowData: List<NewsItem>,
-    val  columnData: UIState
+    val rowData: RowUIState,
+    val  columnData: ColumnUIState
 )
 
-data class NewsItem(
-    val name : String
+data class RowNewsItem(
+    val imageSrc: String,
+    val title: String,
+    val subTitle: String
 )
-interface UIState{
-    val news: List<NewsItem>
 
-    object OnLoading: UIState{
-        override val news: List<NewsItem> = emptyList<NewsItem>()
+data class ColumnNewsItem(
+    val category: String,
+    val author: String,
+    val readTime: String,
+    val image: String,
+    val title: String
+)
+interface RowUIState {
+
+    val news: List<RowNewsItem>
+
+    object OnLoading : RowUIState {
+        override val news: List<RowNewsItem> = emptyList<RowNewsItem>()
     }
 
     data class OnGetNews(
-        override val news: List<NewsItem>
-    ) : UIState
+        override val news: List<RowNewsItem>
+    ) : RowUIState
+}
+interface ColumnUIState {
+
+    val news: List<ColumnNewsItem>
+
+    object OnLoading : ColumnUIState {
+        override val news: List<ColumnNewsItem> = emptyList<ColumnNewsItem>()
+    }
+
+    data class OnGetNews(
+        override val news: List<ColumnNewsItem>
+    ) : ColumnUIState
 }

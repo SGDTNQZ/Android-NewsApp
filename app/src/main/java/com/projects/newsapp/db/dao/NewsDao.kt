@@ -13,6 +13,6 @@ interface NewsDao {
     @Insert
     suspend fun insertNews(newsRoomDTO: NewsRoomDTO)
 
-    @Query("DELETE FROM NEWSROOMDTO")
+    @Query("DELETE FROM NewsRoomDTO")
     suspend fun clearNews()
 }

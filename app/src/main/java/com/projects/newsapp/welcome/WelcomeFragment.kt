@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.projects.newsapp.NetworkApi
+import com.projects.newsapp.data.api.NewsApi
+import com.projects.newsapp.data.repository.NewsRepository
 import com.projects.newsapp.db.DatabaseHolder
 import com.projects.newsapp.extensions.viewModels
 
@@ -17,8 +20,11 @@ class WelcomeFragment : Fragment(){
     private val welcomeViewModel : WelcomeViewModel by viewModels(
         viewModelInitializer = {
             WelcomeViewModel(
-                newsDao = DatabaseHolder.getOrCreate(requireContext().applicationContext)
-                    .getAccountDao(),
+                newsRepository = NewsRepository(
+                newsApi = NetworkApi().retrofit.create<NewsApi>(
+                    NewsApi::class.java
+                    )
+                ),
             )
         }
     )

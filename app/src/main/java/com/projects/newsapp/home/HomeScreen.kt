@@ -37,16 +37,17 @@ fun HomeScreen(
         contentAlignment = Alignment.Center
     ) {
         when(state.columnData){
-            is UIState.OnGetNews ->{
+            is ColumnUIState.OnGetNews ->{
                 LazyColumn (
                     modifier = Modifier
                         .fillMaxSize()
                         .background(color = Color.White)
+                        .padding(horizontal = 10.dp)
                         .padding(top = 56.dp)
                 ) {
                     item { HomeScreenHeader() }
                     item { HomeScreenSearchField(onEvent,state) }
-                    item { HomeScreenPopularList(state.rowData) }
+                    item { HomeScreenPopularList(state.rowData.news) }
                 }
             }
         }
@@ -56,7 +57,7 @@ fun HomeScreen(
 }
 
 @Composable
-fun HomeScreenPopularList(list: List<NewsItem>){
+fun HomeScreenPopularList(list: List<RowNewsItem>){
     Column (
         modifier = Modifier
             .padding(top = 24.dp)

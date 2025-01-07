@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
 import com.projects.newsapp.R
 
 
@@ -46,10 +48,10 @@ fun PopularListHeader(){
 }
 
 @Composable
-internal fun RowItem(item: NewsItem){
+internal fun RowItem(item: RowNewsItem){
     Column (modifier = Modifier.padding(top = 24.dp, end = 8.dp)){
-        Image(
-            painterResource(R.drawable.img_row_item),
+        AsyncImage(
+            model = item.imageSrc,
             contentDescription = "Row item",
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -57,7 +59,7 @@ internal fun RowItem(item: NewsItem){
                 .clip(RoundedCornerShape(32.dp))
         )
         Text(
-            text = "12 Articles",
+            text = item.title,
             fontSize = 14.sp,
             fontWeight = FontWeight(500),
             lineHeight = 28.sp,
@@ -66,8 +68,9 @@ internal fun RowItem(item: NewsItem){
                 .padding(top = 8.dp)
         )
         Text(
-            text = item.name,
+            text = item.subTitle,
             maxLines = 2,
+            modifier = Modifier.width(140.dp),
             overflow = TextOverflow.Ellipsis,
             fontSize = 20.sp,
             lineHeight = 28.sp,

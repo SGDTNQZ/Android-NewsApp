@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.navigation.safeargs)
     alias(libs.plugins.jetbrains.kotlin.parcelize)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
 
 
 }
@@ -71,4 +72,15 @@ dependencies {
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.androidx.navigation.compose)
+
+    implementation(libs.okhttp)
+    implementation(libs.kotlin.serialization)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.serialization)
+    implementation(libs.retrofit.kotlin.result)
+    implementation(libs.coil)
+    implementation(libs.coil.network)
+
+    implementation(libs.androidx.datastore)
+
 }

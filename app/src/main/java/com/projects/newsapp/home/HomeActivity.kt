@@ -20,7 +20,6 @@ class HomeActivity(): ComponentActivity(){
     }
     override fun onResume() {
         super.onResume()
-        homeViewModel.initDao(DatabaseHolder.getOrCreate(this.applicationContext).getAccountDao())
         homeViewModel.dispatch(HomeEvent.OnGetNews)
     }
 
