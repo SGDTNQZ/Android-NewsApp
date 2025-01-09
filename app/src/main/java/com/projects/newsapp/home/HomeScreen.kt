@@ -48,6 +48,13 @@ fun HomeScreen(
                     item { HomeScreenHeader() }
                     item { HomeScreenSearchField(onEvent,state) }
                     item { HomeScreenPopularList(state.rowData.news) }
+                    item { ReadingListHeader() }
+                    state.columnData.news.forEachIndexed{
+                        i,_ ->
+                        item {
+                            ColumnItem(state.columnData.news[i])
+                        }
+                    }
                 }
             }
         }
@@ -83,14 +90,15 @@ fun HomeScreenHeader(){
     ){
         val timeleft = 25
 
-        Column {
+        Column (
+        ) {
             Text(
                 stringResource(R.string.app_name),
                 fontSize = 40.sp,
                 fontWeight = FontWeight(700),
                 lineHeight = 40.sp
             )
-            Row {
+            Row{
                 Text(
                     stringResource(R.string.TodayReading),
                     fontSize = 14.sp,

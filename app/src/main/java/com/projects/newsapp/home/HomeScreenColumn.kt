@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
 import com.projects.newsapp.R
 
 @Composable
@@ -46,14 +47,14 @@ fun ReadingListHeader(){
 }
 
 @Composable
-internal fun ColumnItem(name: String){
+internal fun ColumnItem(item: ColumnNewsItem){
     Row (modifier = Modifier
         .fillMaxWidth()
         .padding(top = 24.dp),
         verticalAlignment = Alignment.CenterVertically
     ){
-        Image(
-            painterResource(R.drawable.img_reading_item),
+        AsyncImage(
+            model = item.image,
             contentDescription = "",
             modifier = Modifier
                 .size(86.dp)
@@ -63,7 +64,7 @@ internal fun ColumnItem(name: String){
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Entrepreneur",
+                text = item.category,
                 fontSize = 11.sp,
                 fontWeight = FontWeight(500),
                 lineHeight = 13.sp,
@@ -77,7 +78,7 @@ internal fun ColumnItem(name: String){
 
             )
             Text(
-                text = name,
+                text = item.title,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
                 fontSize = 16.sp,
@@ -88,7 +89,7 @@ internal fun ColumnItem(name: String){
             )
             Row (modifier = Modifier.padding(top = 8.dp)){
                 Text(
-                    text = "Bella Gonza",
+                    text = item.author,
                     fontSize = 11.sp,
                     fontWeight = FontWeight(500),
                     lineHeight = 13.sp,
@@ -96,7 +97,7 @@ internal fun ColumnItem(name: String){
                 )
                 Spacer(modifier = Modifier.width(11.dp))
                 Text(
-                    "12 mins",
+                    text = item.readTime,
                     fontSize = 11.sp,
                     fontWeight = FontWeight(500),
                     lineHeight = 13.sp,
