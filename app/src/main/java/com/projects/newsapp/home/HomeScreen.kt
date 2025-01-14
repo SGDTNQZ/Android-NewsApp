@@ -1,5 +1,6 @@
 package com.projects.newsapp.home
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,8 +14,13 @@ import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,19 +30,39 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.projects.newsapp.R
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
+import androidx.compose.runtime.State
 
 
 @Composable
 fun HomeScreen(
     onEvent: (HomeEvent) -> Unit,
-    state: HomeState
+    state: State<HomeState>
 ){
+    val timeLeft = remember { mutableIntStateOf(60) }
+
+//    LaunchedEffect(Unit) {
+//        onEvent(HomeEvent.OnGetNews)
+//    }
+
+//    DisposableEffect(state.value.columnData is ColumnUIState.OnGetNews) {
+//        val scope = MainScope()
+//        val job = Job()
+//        scope.launch { job }
+//        onDispose {
+//            job.cancel()
+//        }
+//    }
+
     Box(
         modifier = Modifier
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        when(state.columnData){
+
+        when(state.value.columnData){
             is ColumnUIState.OnGetNews ->{
                 LazyColumn (
                     modifier = Modifier
@@ -46,19 +72,30 @@ fun HomeScreen(
                         .padding(top = 56.dp)
                 ) {
                     item { HomeScreenHeader() }
-                    item { HomeScreenSearchField(onEvent,state) }
-                    item { HomeScreenPopularList(state.rowData.news) }
+                    item { HomeScreenSearchField(onEvent,state.value) }
+                    item { HomeScreenPopularList(state.value.rowData.news) }
                     item { ReadingListHeader() }
-                    state.columnData.news.forEachIndexed{
+                    state.value.columnData.news.forEachIndexed{
                         i,_ ->
                         item {
-                            ColumnItem(state.columnData.news[i])
+                            ColumnItem(state.value.columnData.news[i])
                         }
                     }
                 }
             }
+            is ColumnUIState.OnLoading ->{
+                CircularProgressIndicator(Modifier.size(48.dp))
         }
 
+    }
+//        AnimatedVisibility(timeLeft.value > 0) {
+//            Text(
+//                text = "Time left: ${timeLeft.value}",
+//                color = Color.White,
+//                modifier = Modifier.padding(horizontal = 16.dp, vertical = 5.dp)
+//            )
+//
+//        }
 
     }
 }

@@ -20,11 +20,13 @@ class WelcomeFragment : Fragment(){
     private val welcomeViewModel : WelcomeViewModel by viewModels(
         viewModelInitializer = {
             WelcomeViewModel(
-                newsRepository = NewsRepository(
-                newsApi = NetworkApi().retrofit.create<NewsApi>(
-                    NewsApi::class.java
-                    )
-                ),
+
+//                newsRepository = NewsRepository(
+//                newsApi = NetworkApi().retrofit.create<NewsApi>(
+//                    NewsApi::class.java
+//                    )
+//                ),
+
             )
         }
     )

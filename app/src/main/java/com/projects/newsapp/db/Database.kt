@@ -4,10 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.projects.newsapp.db.Entity.NewsRoomDTO
+import com.projects.newsapp.db.Entity.NewsColumnRoomDTO
+import com.projects.newsapp.db.Entity.NewsRowRoomDTO
 import com.projects.newsapp.db.dao.NewsDao
 
-@Database(entities = [NewsRoomDTO::class], version = 1)
+@Database(entities = [NewsRowRoomDTO::class, NewsColumnRoomDTO::class], version = 2)
 abstract class NewsDatabase: RoomDatabase() {
 
     abstract fun getAccountDao(): NewsDao

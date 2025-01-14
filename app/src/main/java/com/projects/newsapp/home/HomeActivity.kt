@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.runtime.collectAsState
 import com.projects.newsapp.db.DatabaseHolder
 
 class HomeActivity(): ComponentActivity(){
@@ -14,12 +15,13 @@ class HomeActivity(): ComponentActivity(){
         setContent{
             HomeScreen(
                 onEvent = {event -> homeViewModel.dispatch(event)},
-                state = homeViewModel.homeState.value
+                state = homeViewModel.homeState.collectAsState()
             )
         }
     }
     override fun onResume() {
         super.onResume()
+        homeViewModel.setContext(this)
         homeViewModel.dispatch(HomeEvent.OnGetNews)
     }
 

@@ -1,6 +1,5 @@
 package com.projects.newsapp.home
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,18 +15,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import com.projects.newsapp.R
 
 @Composable
 fun ReadingListHeader(){
     Row (
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth()
+            .padding(top = 24.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.Bottom
     ) {
@@ -50,7 +48,7 @@ fun ReadingListHeader(){
 internal fun ColumnItem(item: ColumnNewsItem){
     Row (modifier = Modifier
         .fillMaxWidth()
-        .padding(top = 24.dp),
+        .padding(top = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ){
         AsyncImage(

@@ -10,10 +10,6 @@ class WelcomeActivity : FragmentActivity(R.layout.main_activity){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val splashPreference = WelcomePreference(this.applicationContext)
-        splashPreference.setTitle("title")
-        splashPreference.setSubTitle("subTitle")
-
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController

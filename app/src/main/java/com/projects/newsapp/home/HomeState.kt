@@ -31,6 +31,7 @@ interface RowUIState {
         override val news: List<RowNewsItem>
     ) : RowUIState
 }
+
 interface ColumnUIState {
 
     val news: List<ColumnNewsItem>
